@@ -2,7 +2,7 @@
 """Floor of a number"""
 
 
-def floor(n: float) -> int:
+def floor_num(n: float) -> int:
     """floor of a number"""
 
-    return int(floor(n))
+    return int(round(n))

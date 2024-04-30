@@ -5,7 +5,7 @@ This module demonstrates how to use type checking in Python.
 from typing import Tuple
 
 
-def zoom_array(lst: Tuple[int], factor: int = 2) -> Tuple[int]:
+def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> Tuple[int, ...]:
     """
     zoom_array takes a tuple of integers and returns a new tuple
     """

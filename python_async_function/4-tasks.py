@@ -12,4 +12,4 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """
     wait_list = [await task_wait_random(max_delay) for _ in range(n)]
 
-    return wait_list
+    return sorted(wait_list)

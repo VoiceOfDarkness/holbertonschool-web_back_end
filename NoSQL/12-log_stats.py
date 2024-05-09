@@ -5,13 +5,14 @@ from pymongo import MongoClient
 
 def log_stats(mongo_collection):
     """Log stats"""
-    print(f'{mongo_collection.estimatedDocumentCount()} logs')
+
+    print('{} logs'.format(mongo_collection.count_documents()))
     print('Methods:')
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
-        count = mongo_collection.countDocuments({"method": method})
-        print(f'\tmethod {method}: {count}')
-    print(f'{mongo_collection.countDocuments({})} status check')
+        count = mongo_collection.count_documents({"method": method})
+        print('\tmethod {}: {}'.format(method, count))
+    print('{} status check'.format(mongo_collection.count_documents({})))
 
 
 if __name__ == "__main__":

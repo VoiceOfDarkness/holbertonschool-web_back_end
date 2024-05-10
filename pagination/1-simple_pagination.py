@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 import csv
-import math
 from typing import List
+"""Simple helper function to paginate a database of popular baby names."""
 
 
 class Server:

@@ -4,6 +4,7 @@ Pagination: Simple Task
 """
 from typing import Tuple, List
 import csv
+import math
 
 index_range = __import__('0-simple_helper_function').index_range
 
@@ -42,20 +43,20 @@ class Server:
             return []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
-        """Getting hypermedia pagination
+        """Returning dictionary with info about page
         """
-        data = self.get_page(page, page_size)
-        total_pages = len(self.dataset()) / page_size
-        if len(self.dataset()) % page_size != 0:
-            total_pages += 1
+        data = self.get_page(page=page, page_size=page_size)
+        total_len = len(self.dataset())
+        total_pages = math.ceil(total_len / page_size)
+
         return {
-            'page_size': len(data),
-            'page': page,
-            'data': data,
-            'next_page': page + 1 if page + 1 < total_pages else None,
-            'prev_page': page - 1 if page > 1 else None,
-            'total_pages': total_pages
-        }
+            "page_size": len(data),
+            "page": page,
+            "data": data,
+            "next_page": page + 1 if page < total_pages else None,
+            "prev_page": page - 1 if page > 1 else None,
+            "total_pages": total_pages
+            }
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:

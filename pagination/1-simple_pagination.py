@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+"""
+Pagination: Simple Task
+"""
+from typing import Tuple, List
 import csv
-from typing import Tuple
 
-from typing import List
-"""Simple helper function to paginate a database of popular baby names."""
+index_range = __import__('0-simple_helper_function').index_range
 
 
 class Server:
@@ -26,14 +28,18 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """Return the appropriate page of the dataset
+        """Getting page
         """
-        assert isinstance(page, int) and page > 0
-        assert isinstance(page_size, int) and page_size > 0
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
 
-        start = (page - 1) * page_size
-        end = page * page_size
-        return self.dataset()[start:end]
+        indexes = index_range(page, page_size)
+        s, e = indexes[0], indexes[1]
+
+        try:
+            return self.dataset()[s:e]
+        except IndexError:
+            return []
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:

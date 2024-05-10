@@ -17,5 +17,5 @@ if __name__ == "__main__":
         print("\tmethod {0}: {1}".format(method, lengths))
 
     status = logs_collection.count_documents({"method": "GET",
-                                            "path": "/status"})
+                                              "path": "/status"})
     print("{0} status check".format(status))

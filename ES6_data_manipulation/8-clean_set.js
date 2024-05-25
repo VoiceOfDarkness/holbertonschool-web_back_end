@@ -1,12 +1,17 @@
 /* eslint-disable */
 
-export default function cleanSet(set, startString) {
-  if (startString === "") return "";
+export default function cleanSet(set, startString = "") {
+  const str = [];
 
-  const filteredValues = Array.from(set)
-    .filter((value) => value.startsWith(startString))
-    .map((value) => value.slice(startString.length));
+  if (startString.length === 0) {
+    return "";
+  }
 
-  const cleanedString = filteredValues.join("-");
-  return cleanedString;
+  for (const item of set) {
+    if (item && item.startsWith(startString)) {
+      str.push(item.slice(startString.length));
+    }
+  }
+
+  return str.join("-");
 }

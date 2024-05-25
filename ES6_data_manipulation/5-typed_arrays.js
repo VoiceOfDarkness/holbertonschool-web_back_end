@@ -2,7 +2,7 @@
 
 export default function createInt8TypedArray(length, position, num) {
   if (position >= length) {
-    throw new Error("Position is outside the bounds of the array");
+    throw new Error("Position outside range");
   }
 
   let buffer = new ArrayBuffer(length);
